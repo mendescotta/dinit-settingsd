@@ -1,0 +1,27 @@
+.TH DINIT-SETTINGSCTL 1 "October 2026" "dinit-settingsd 0.1.0"
+.SH NAME
+dinit-settingsctl, timedatectl, hostnamectl, localectl \- clients for dinit-settingsd
+.SH SYNOPSIS
+.B dinit-settingsctl
+.I tool command
+[\fIargs\fR]
+.br
+.B timedatectl | hostnamectl | localectl
+.I command
+[\fIargs\fR]
+.SH DESCRIPTION
+Small multi-call client for the hostname1, timedate1 and locale1 services. The
+three tool names are symlinks to dinit-settingsctl.
+.SH COMMANDS
+.TP
+.B timedatectl
+status, show, set-timezone, list-timezones, set-ntp, set-local-rtc
+.TP
+.B hostnamectl
+status, hostname, set-hostname (\-\-static, \-\-pretty, \-\-transient),
+set-icon-name, set-chassis, set-deployment, set-location
+.TP
+.B localectl
+status, list-locales, set-locale, set-keymap, set-x11-keymap
+.SH SEE ALSO
+.BR dinit-settingsd (8)

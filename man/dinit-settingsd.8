@@ -1,0 +1,49 @@
+.TH DINIT-SETTINGSD 8 "October 2026" "dinit-settingsd 0.1.0"
+.SH NAME
+dinit-settingsd \- hostname1, timedate1 and locale1 D-Bus services for dinit systems
+.SH SYNOPSIS
+.B /usr/libexec/dinit-settingsd
+[\fB\-\-read\-only\fR] [\fB\-\-ntp\-service\fR \fINAME\fR] [\fB\-\-version\fR]
+.SH DESCRIPTION
+Implements the freedesktop.org hostname1, timedate1 and locale1 interfaces so
+desktop settings panels can change the hostname, time zone, NTP, RTC mode,
+locale and keyboard layout without systemd. It is started on demand by the
+system bus and exits after 60 seconds without activity. Changes are
+authorized through polkit.
+.SH OPTIONS
+.TP
+.B \-\-read\-only
+Refuse every change with org.freedesktop.DBus.Error.NotSupported.
+.TP
+.BI \-\-ntp\-service " NAME"
+Use only this dinit service for NTP instead of the configured list.
+.TP
+.B \-\-version
+Print the version and exit.
+.SH FILES
+.TP
+.I /etc/hostname, /etc/machine-info
+Static hostname; pretty name, icon, chassis, deployment, location.
+.TP
+.I /etc/localtime, /etc/adjtime
+Time zone and RTC mode (UTC or LOCAL).
+.TP
+.I /etc/locale.conf
+System locale variables.
+.TP
+.I /etc/rc.conf
+KEYMAP (console keymap) and TIMEZONE if present.
+.TP
+.I /etc/X11/xorg.conf.d/00-keyboard.conf
+X11 keyboard layout, model, variant and options.
+.TP
+.I /etc/dinit-settingsd.conf
+Optional. ntp-services=chronyd sets the NTP service order (default: chronyd).
+NTP is enabled by linking the service into /etc/dinit.d/boot.d and started or stopped with dinitctl.
+.SH NOTES
+Shell-style files are edited line by line: only the assignment being changed is
+rewritten, and the program refuses to touch an assignment it cannot parse
+(for example a value spanning several lines).
+.SH SEE ALSO
+.BR dinit-settingsctl (1),
+.BR dinitctl (8)
