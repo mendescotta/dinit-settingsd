@@ -7,7 +7,7 @@ license = "GPL-3.0-or-later"
 repository = "https://github.com/mendescotta/dinit-settingsd"
 
 [dependencies]
-zbus = "5"
+zbus = "6"
 libc = "0.2"
 async-io = "2"
 
